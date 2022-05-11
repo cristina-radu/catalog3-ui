@@ -20,9 +20,9 @@ export class TeacherListComponent implements OnInit {
 
   public onAddTeacher():void {
     const dialogRef = this.dialog.open(AddUpdateTeacherComponent, {
-     /* width: '250px'*//*,
-      data: {name: this.name, animal: this.animal},*/
+      data: {teacher: new Teacher(), isEditMode: false}
     });
+    this.refreshTeacherList();
   }
 
 

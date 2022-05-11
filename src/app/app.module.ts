@@ -13,6 +13,10 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {TeacherItemComponent} from "./catalog/tabs/teacher-list/teacher-item/teacher-item.component";
 import {AddUpdateTeacherComponent} from "./catalog/tabs/teacher-list/add-update-teacher/add-update-teacher.component";
+import {RequestService} from "./service/request.service";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
+import {TeacherSubjectListComponent} from "./catalog/tabs/teacher-list/add-update-teacher/teacher-subject-list/teacher-subject-list.component";
+import {TeacherSubjectComponent} from "./catalog/tabs/teacher-list/add-update-teacher/teacher-subject-list/teacher-subject/teacher-subject.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import {AddUpdateTeacherComponent} from "./catalog/tabs/teacher-list/add-update-
     SubjectComponent,
     TeacherListComponent,
     TeacherItemComponent,
-    AddUpdateTeacherComponent
+    AddUpdateTeacherComponent,
+    TeacherSubjectListComponent,
+    TeacherSubjectComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,7 @@ import {AddUpdateTeacherComponent} from "./catalog/tabs/teacher-list/add-update-
     FlexLayoutModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [RequestService/*, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Teacher} from "../../../../model/teacher.model";
 import {HttpClient} from "@angular/common/http";
+import {AddUpdateTeacherComponent} from "../add-update-teacher/add-update-teacher.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-teacher-item',
@@ -8,10 +10,10 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./teacher-item.component.css']
 })
 export class TeacherItemComponent implements OnInit {
-  @Input() teacher:Teacher = new Teacher(0, "", "", "", 0);
+  @Input() teacher:Teacher = new Teacher();
   @Output() refreshTeacherEvent:EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(public httpClient:HttpClient) { }
+  constructor(public httpClient:HttpClient, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -26,4 +28,16 @@ export class TeacherItemComponent implements OnInit {
       })
 
   }
+
+  public onEditTeacher():void {
+    const dialogRef = this.dialog.open(AddUpdateTeacherComponent, {
+      data: { teacher: this.teacher, isEditMode: true}
+    });
+
+    dialogRef.afterClosed().subscribe(event => {
+      this.refreshTeacherEvent.emit();
+    });
+  }
+
+
 }
